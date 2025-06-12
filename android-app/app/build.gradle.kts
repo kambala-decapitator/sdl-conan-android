@@ -6,6 +6,7 @@ plugins {
 android {
     namespace = "com.kambala.sdl_primitives"
     compileSdk = 35
+    ndkVersion = "25.2.9519653"
 
     defaultConfig {
         applicationId = "com.kambala.sdl_primitives"
@@ -13,6 +14,12 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
+    }
+
+    sourceSets {
+        getByName("main") {
+            java.srcDirs(providers.gradleProperty("SDL_JAVA_SRC"), "src/main/java")
+        }
     }
 
     buildTypes {
