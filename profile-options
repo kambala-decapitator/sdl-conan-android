@@ -1,0 +1,4 @@
+[options]
+sdl/*:sdl2main=True
+sdl/*:shared=True
+sdl/*:vulkan=False
