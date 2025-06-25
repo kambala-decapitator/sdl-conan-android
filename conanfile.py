@@ -1,5 +1,6 @@
 from conan import ConanFile
 from conan.tools.cmake import CMake, cmake_layout
+from conan.tools.env import VirtualBuildEnv
 import os
 
 required_conan_version = ">=2"
@@ -17,6 +18,14 @@ class SDLPrimitives(ConanFile):
 
     def layout(self):
         cmake_layout(self)
+
+    def generate(self):
+        env = VirtualBuildEnv(self)
+        venv = env.environment()
+        sdl = self.dependencies.host["sdl"]
+        venv.define("ORG_GRADLE_PROJECT_SDL_JAR_PATH",
+                    os.path.join(sdl.package_folder, "share", "java", "SDL3", f"SDL3-{sdl.ref.version}.jar"))
+        env.generate()
 
     def build(self):
         cmake = CMake(self)

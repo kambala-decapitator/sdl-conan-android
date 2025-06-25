@@ -16,12 +16,6 @@ android {
         versionName = "1.0"
     }
 
-    sourceSets {
-        getByName("main") {
-            java.srcDirs(providers.gradleProperty("SDL_JAVA_SRC"), "src/main/java")
-        }
-    }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -45,4 +39,6 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+
+    implementation(files(providers.gradleProperty("SDL_JAR_PATH")))
 }
